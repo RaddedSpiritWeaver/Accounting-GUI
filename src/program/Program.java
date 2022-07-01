@@ -7,6 +7,8 @@ import services.AuthService;
 import services.CartServices;
 import views.MainFrame;
 
+import java.util.LinkedList;
+
 public class Program {
 
     private DataStore dataStore;
@@ -51,5 +53,9 @@ public class Program {
 
     public Product getRandomProduct() {
         return this.dataStore.getFirst();
+    }
+
+    public LinkedList<Product> getProducts() {
+        return dataStore.getProducts();
     }
 }

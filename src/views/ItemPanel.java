@@ -53,14 +53,14 @@ public class ItemPanel extends JPanel {
         JButton addButton = new JButton("Add");
         addButton.addActionListener(e -> {
             cartServices.addToCart(this.product);
-            storeCountLabel.setText(String.format("Storage: %d", cartServices.getCartCount(this.product)));
+            storeCountLabel.setText(String.format("Storage: %d", cartServices.getInventoryCount(this.product)));
             cartCountLabel.setText(String.format("Cart: %d", cartServices.getCartCount(this.product)));
         });
 
         JButton removeButton = new JButton("Remove");
         removeButton.addActionListener(e -> {
             cartServices.removeFromCart(this.product);
-            storeCountLabel.setText(String.format("Storage: %d", cartServices.getCartCount(this.product)));
+            storeCountLabel.setText(String.format("Storage: %d", cartServices.getInventoryCount(this.product)));
             cartCountLabel.setText(String.format("Cart: %d", cartServices.getCartCount(this.product)));
         });
 

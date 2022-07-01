@@ -28,6 +28,10 @@ public class DataStore {
         this.products.add(new Product("laptop", ProductType.Electronics, 1000));
         this.products.add(new Product("laptop2", ProductType.Electronics, 2000));
         this.products.add(new Product("laptop3", ProductType.Electronics, 2300));
+        this.products.add(new Product("laptop4", ProductType.Electronics, 2300));
+        this.products.add(new Product("laptop5", ProductType.Electronics, 2300));
+        this.products.add(new Product("laptop6", ProductType.Electronics, 2300));
+        this.products.add(new Product("laptop7", ProductType.Electronics, 2300));
 
         this.products.add(new Product("pill", ProductType.Pharmaceutical, 100));
         this.products.add(new Product("pill2", ProductType.Pharmaceutical, 200));
@@ -67,6 +71,10 @@ public class DataStore {
 
     public Product getFirst() {
         return this.products.getFirst();
+    }
+
+    public LinkedList<Product> getProducts() {
+        return products;
     }
 
     @Override
