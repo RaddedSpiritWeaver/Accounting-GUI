@@ -10,7 +10,7 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.cart = new Cart();
+        this.cart = new Cart(this);
         this.debt = 0;
     }
 

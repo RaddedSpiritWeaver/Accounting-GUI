@@ -4,6 +4,7 @@ public enum ViewPanels {
 
     Blank,
     Login,
-    Signup
+    Signup,
+    Shopping
 
 }

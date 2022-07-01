@@ -1,5 +1,7 @@
 package views;
 
+import dataModels.Product;
+import dataModels.enums.ProductType;
 import enums.ViewPanels;
 import program.Program;
 
@@ -22,12 +24,11 @@ public class MainFrame extends JFrame {
         init();
         // first panel we see is the login panel
         this.currentPanel = new LoginPanel(this);
-//        this.add(this.currentPanel);
         this.setContentPane(this.currentPanel);
         resetVisibility();
     }
 
-    private void resetVisibility() {
+    public void resetVisibility() {
         this.setVisible(false);
         this.setVisible(true);
     }
@@ -46,6 +47,8 @@ public class MainFrame extends JFrame {
     }
 
     public void changeView(ViewPanels newView) {
+        System.out.println("Changing view to: " + newView.toString());
+
         if (newView.equals(ViewPanels.Blank))
             changePanel(new JPanel());
 
@@ -54,6 +57,10 @@ public class MainFrame extends JFrame {
 
         if (newView.equals(ViewPanels.Signup))
             changePanel(new SignupPanel(this));
+
+        if (newView.equals(ViewPanels.Shopping)) {
+            changePanel(new ItemPanel(this, this.program.getRandomProduct()));
+        }
     }
 
     // getters and setters

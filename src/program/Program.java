@@ -1,8 +1,10 @@
 package program;
 
 import dataModels.DataStore;
+import dataModels.Product;
 import dataModels.User;
 import services.AuthService;
+import services.CartServices;
 import views.MainFrame;
 
 public class Program {
@@ -37,5 +39,17 @@ public class Program {
 
     public void setAuthService(AuthService authService) {
         this.authService = authService;
+    }
+
+    public CartServices getCartService() {
+        return new CartServices(this.currentUser.getCart(), this.dataStore.getInventory(), this);
+    }
+
+    public void signalScreenRefresh(){
+        this.mainFrame.resetVisibility();
+    }
+
+    public Product getRandomProduct() {
+        return this.dataStore.getFirst();
     }
 }

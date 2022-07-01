@@ -68,7 +68,7 @@ public class LoginPanel extends JPanel {
             AuthService authService = this.mainFrame.getProgram().getAuthService();
             if (authService.login(userField.getText(), passwordField.getText())) {
                 // todo: add transition to next page
-                this.mainFrame.changeView(ViewPanels.Blank);
+                this.mainFrame.changeView(ViewPanels.Shopping);
             }
             else {
                 // create a dialog and say failed

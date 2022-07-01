@@ -8,12 +8,15 @@ public class DataStore {
 
     private LinkedList<Product> products;
     private LinkedList<User> users;
+    private Cart inventory;
 
     public DataStore() {
         this.products = new LinkedList<>();
         this.users = new LinkedList<>();
+        this.inventory = new Cart(null);
         initUsers();
         initProducts();
+        initInventory();
     }
 
     private void initUsers() {
@@ -35,6 +38,14 @@ public class DataStore {
         this.products.add(new Product("chips3", ProductType.Household, 100));
     }
 
+    private void initInventory() {
+        int i = 1;
+        for (Product p : this.products) {
+            i++;
+            this.inventory.addItem(p, i);
+        }
+    }
+
     public User getUserByName(String username) {
         // todo: improve search
         // run simple search for user
@@ -50,8 +61,17 @@ public class DataStore {
         this.users.add(u);
     }
 
+    public Cart getInventory() {
+        return this.inventory;
+    }
+
+    public Product getFirst() {
+        return this.products.getFirst();
+    }
+
     @Override
     public String toString() {
+        this.inventory.show();
         return "DataStore{" +
                 "products=" + products +
                 "\n users=" + users +
