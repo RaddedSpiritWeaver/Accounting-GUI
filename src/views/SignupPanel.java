@@ -67,6 +67,12 @@ public class SignupPanel extends JPanel {
             // get the authentication service
             AuthService authService = this.mainFrame.getProgram().getAuthService();
 
+            if(userField.getText().equals(""))
+                return;
+
+            if(passwordField.getText().equals(""))
+                return;
+
             if (authService.createUser(userField.getText(), passwordField.getText())) {
                 // create a dialog and say failed
                 JDialog failedDialog = new JDialog(this.mainFrame, "success");
