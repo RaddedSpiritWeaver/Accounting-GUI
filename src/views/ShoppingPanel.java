@@ -14,11 +14,12 @@ public class ShoppingPanel extends JPanel {
 
     private MainFrame mainFrame;
     private JPanel currentItemViewPanel;
+    private JPanel itemContainerPanelRef;
 
     public ShoppingPanel(MainFrame mainFrame) {
         super();
         this.mainFrame = mainFrame;
-
+        this.currentItemViewPanel = new ItemViewPanel(mainFrame.getProgram().getProducts());
         init();
     }
 
@@ -45,7 +46,24 @@ public class ShoppingPanel extends JPanel {
 
         JButton searchButton = new JButton("search");
         searchButton.addActionListener(e -> {
-            // todo: add action
+            LinkedList<Product> results = new LinkedList<>();
+
+            if (!searchField.getText().equals("")) {
+                // simple search
+                for(Product p : mainFrame.getProgram().getProducts())
+                    if (p.getName().contains(searchField.getText()))
+                        results.add(p);
+            }
+            else {
+                results = mainFrame.getProgram().getProducts();
+            }
+
+            this.itemContainerPanelRef.remove(this.currentItemViewPanel);
+
+
+            this.currentItemViewPanel = new ItemViewPanel(results);
+            this.itemContainerPanelRef.add(this.currentItemViewPanel);
+            this.mainFrame.resetVisibility();
         });
 
         topPanel.add(viewProfileButton);
@@ -59,7 +77,8 @@ public class ShoppingPanel extends JPanel {
         itemViewPanelContainer.setBackground(Color.darkGray);
         itemViewPanelContainer.setPreferredSize(new Dimension(600, 1200));
         // todo: maybe change for searching mechanisim
-        itemViewPanelContainer.add(new ItemViewPanel(mainFrame.getProgram().getProducts()));
+        itemViewPanelContainer.add(this.currentItemViewPanel);
+        this.itemContainerPanelRef = itemViewPanelContainer;
 
         // make it scrollable
         JScrollPane scrollableItemViewContainer = new JScrollPane(itemViewPanelContainer);
@@ -79,7 +98,7 @@ public class ShoppingPanel extends JPanel {
 
         public ItemViewPanel(LinkedList<Product> products) {
             super();
-            this.products = products;
+            this.products = (LinkedList<Product>) products.clone();
             init();
         }
 

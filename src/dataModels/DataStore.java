@@ -26,16 +26,19 @@ public class DataStore {
 
     private void initProducts() {
         this.products.add(new Product("laptop", ProductType.Electronics, 1000));
-        this.products.add(new Product("laptop2", ProductType.Electronics, 2000));
-        this.products.add(new Product("laptop3", ProductType.Electronics, 2300));
-        this.products.add(new Product("laptop4", ProductType.Electronics, 2300));
-        this.products.add(new Product("laptop5", ProductType.Electronics, 2300));
-        this.products.add(new Product("laptop6", ProductType.Electronics, 2300));
-        this.products.add(new Product("laptop7", ProductType.Electronics, 2300));
+        this.products.add(new Product("laptop 2", ProductType.Electronics, 2000));
+        this.products.add(new Product("laptop 3", ProductType.Electronics, 2300));
+        this.products.add(new Product("laptop 4", ProductType.Electronics, 2300));
+        this.products.add(new Product("laptop 5", ProductType.Electronics, 2300));
+        this.products.add(new Product("laptop 6", ProductType.Electronics, 2300));
+        this.products.add(new Product("laptop 7", ProductType.Electronics, 2300));
 
         this.products.add(new Product("pill", ProductType.Pharmaceutical, 100));
         this.products.add(new Product("pill2", ProductType.Pharmaceutical, 200));
         this.products.add(new Product("pill3", ProductType.Pharmaceutical, 300));
+        this.products.add(new Product("pill laptop", ProductType.Pharmaceutical, 100));
+        this.products.add(new Product("pill2 laptop", ProductType.Pharmaceutical, 200));
+        this.products.add(new Product("pill3 laptop", ProductType.Pharmaceutical, 300));
 
         this.products.add(new Product("chips", ProductType.Household, 50));
         this.products.add(new Product("chips2", ProductType.Household, 75));
