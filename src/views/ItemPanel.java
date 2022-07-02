@@ -30,13 +30,17 @@ public class ItemPanel extends JPanel {
     private void init(int count) {
         CartServices cartServices = this.mainFrame.getProgram().getCartService();
 
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+//        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setLayout(new GridLayout(3, 1));
         this.setSize(200,200);
-        this.setBackground(Color.CYAN);
+        this.setBackground(Color.lightGray);
+        this.setBorder(BorderFactory.createLineBorder(Color.darkGray, 2));
 
         // first row
         JPanel topPanel = new JPanel();
-        topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
+        topPanel.setBackground(Color.lightGray);
+        topPanel.setBorder(BorderFactory.createLineBorder(Color.pink, 1));
+        topPanel.setLayout(new GridLayout(1, 2));
 
         JLabel nameLabel = new JLabel(this.product.getName());
 
@@ -46,8 +50,10 @@ public class ItemPanel extends JPanel {
         topPanel.add(priceLabel);
 
         JPanel midPanel = new JPanel();
-        midPanel.setBackground(Color.ORANGE);
-        midPanel.setLayout(new BoxLayout(midPanel, BoxLayout.X_AXIS));
+        midPanel.setBackground(Color.lightGray);
+        midPanel.setBorder(BorderFactory.createLineBorder(Color.pink, 1));
+//        midPanel.setLayout(new BoxLayout(midPanel, BoxLayout.X_AXIS));
+        midPanel.setLayout(new GridLayout(1, 2));
 
         JLabel storeCountLabel = new JLabel(String.format("Storage: %d", cartServices.getInventoryCount(this.product)));
 
@@ -60,6 +66,7 @@ public class ItemPanel extends JPanel {
             midPanel.remove(storeCountLabel);
 
         JPanel bottomPanel = new JPanel();
+        bottomPanel.setBackground(Color.lightGray);
 
         if(!this.checkOutMode){
             bottomPanel.setLayout(new GridLayout(1, 2));

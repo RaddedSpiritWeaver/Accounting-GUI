@@ -33,7 +33,8 @@ public class ShoppingPanel extends JPanel {
         // top bar
         JPanel topPanel = new JPanel();
         topPanel.setBounds(0,0,600, 100);
-        topPanel.setBackground(Color.red);
+        topPanel.setBackground(Color.lightGray);
+        topPanel.setBorder(BorderFactory.createLineBorder(Color.darkGray, 5));
 
         JButton viewProfileButton = new JButton("View Profile");
         viewProfileButton.addActionListener(e -> {
@@ -68,7 +69,7 @@ public class ShoppingPanel extends JPanel {
             }
         });
 
-        JTextField searchField = new JTextField(40);
+        JTextField searchField = new JTextField(30);
 
         JButton searchButton = new JButton("search");
         searchButton.addActionListener(e -> {
@@ -99,18 +100,20 @@ public class ShoppingPanel extends JPanel {
 
         // create a base panel and fill it with ItemViewPanel later and on updates
         JPanel itemViewPanelContainer = new JPanel();
-        itemViewPanelContainer.setLayout(new FlowLayout(FlowLayout.CENTER));
-        itemViewPanelContainer.setBackground(Color.darkGray);
-        itemViewPanelContainer.setPreferredSize(new Dimension(600, 1200));
-        // todo: maybe change for searching mechanisim
+//        itemViewPanelContainer.setLayout(new FlowLayout(FlowLayout.CENTER));
+        itemViewPanelContainer.setLayout(new GridLayout(1, 1));
+        itemViewPanelContainer.setBackground(Color.lightGray);
+        itemViewPanelContainer.setBorder(BorderFactory.createLineBorder(Color.cyan, 2));
+//        itemViewPanelContainer.setPreferredSize(new Dimension(600, 1200));
         itemViewPanelContainer.add(this.currentItemViewPanel);
         this.itemContainerPanelRef = itemViewPanelContainer;
 
         // make it scrollable
         JScrollPane scrollableItemViewContainer = new JScrollPane(itemViewPanelContainer);
-        scrollableItemViewContainer.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollableItemViewContainer.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollableItemViewContainer.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollableItemViewContainer.setBounds(0, 100, 600, 900);
+        scrollableItemViewContainer.setBounds(0, 100, 600, 500);
+        scrollableItemViewContainer.setBorder(BorderFactory.createLineBorder(Color.CYAN, 1));
 
         this.add(topPanel);
         this.add(scrollableItemViewContainer);
@@ -130,7 +133,9 @@ public class ShoppingPanel extends JPanel {
 
         private void init() {
             // we have 3 item categories, we need one card for each
-            this.setLayout(new GridLayout(3 ,1));
+//            this.setLayout(new GridLayout(3 ,1));
+            this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+            this.setBorder(BorderFactory.createLineBorder(Color.blue, 1));
 
             LinkedList<Product>[] parts = new LinkedList[3];
 
@@ -206,7 +211,7 @@ public class ShoppingPanel extends JPanel {
                 int i = 0;
                 while (i < delta){
                     JPanel empty = new JPanel();
-                    empty.setBackground(Color.green);
+                    empty.setBackground(Color.lightGray);
                     itemContainer.add(empty);
                     i++;
                 }

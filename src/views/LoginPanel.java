@@ -27,19 +27,23 @@ public class LoginPanel extends JPanel {
         midPanel.setLayout(new GridLayout(3, 1));
         midPanel.setSize(400, 150);
         midPanel.setLocation(100,50);
+        midPanel.setBorder(BorderFactory.createLineBorder(Color.darkGray, 5));
 
         JPanel userPanel = new JPanel();
-        userPanel.setBackground(Color.darkGray);
+        userPanel.setBackground(Color.lightGray);
+        userPanel.setBorder(BorderFactory.createLineBorder(Color.orange, 3));
         userPanel.setLayout(null);
 
 
         JPanel passwordPanel = new JPanel();
-        passwordPanel.setBackground(Color.darkGray);
+        passwordPanel.setBackground(Color.lightGray);
+        passwordPanel.setBorder(BorderFactory.createLineBorder(Color.orange, 3));
         passwordPanel.setLayout(null);
 
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(Color.darkGray);
+        buttonPanel.setBackground(Color.lightGray);
+        buttonPanel.setBorder(BorderFactory.createLineBorder(Color.orange, 3));
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         midPanel.add(userPanel);

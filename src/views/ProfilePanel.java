@@ -22,8 +22,11 @@ public class ProfilePanel extends JPanel {
         this.setLayout(null);
 
         JPanel mainContainer = new JPanel();
-        mainContainer.setBounds(200,200,200,150);
-        mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
+        mainContainer.setBounds(100,100,400,100);
+//        mainContainer.setLayout(new BoxLayout(mainContainer, BoxLayout.Y_AXIS));
+        mainContainer.setLayout(new GridLayout(4, 1));
+        mainContainer.setBorder(BorderFactory.createLineBorder(Color.darkGray, 3));
+        mainContainer.setBackground(Color.LIGHT_GRAY);
 
         JLabel usernameLabel = new JLabel(String.format("Username : %s", user.getUsername()));
 
@@ -33,6 +36,7 @@ public class ProfilePanel extends JPanel {
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(1, 2));
+        buttonPanel.setBackground(Color.lightGray);
 
         JButton backButton = new JButton("Back");
         backButton.addActionListener(e -> {
