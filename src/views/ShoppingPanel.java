@@ -2,6 +2,7 @@ package views;
 
 import dataModels.Cart;
 import dataModels.Product;
+import enums.ViewPanels;
 
 import javax.imageio.plugins.jpeg.JPEGHuffmanTable;
 import javax.swing.*;
@@ -11,6 +12,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 
 public class ShoppingPanel extends JPanel {
+
+    static int banThreshold = -1000;
 
     private MainFrame mainFrame;
     private JPanel currentItemViewPanel;
@@ -39,7 +42,30 @@ public class ShoppingPanel extends JPanel {
 
         JButton checkoutButton = new JButton("Checkout");
         checkoutButton.addActionListener(e -> {
-            // todo: add action
+            if (mainFrame.getProgram().getCurrentUser().getDebt() < banThreshold) {
+                System.out.println("shopping panel - checkout button - to much debt");
+                JDialog errorDialog = new JDialog(this.mainFrame, "no check out");
+                errorDialog.setSize(200, 100);
+
+                JLabel textLabel = new JLabel("your Debt: " + mainFrame.getProgram().getCurrentUser().getDebt());
+                errorDialog.add(textLabel);
+
+                errorDialog.setVisible(true);
+                return;
+            }
+
+            if(!this.mainFrame.getProgram().getCurrentUser().hasEmptyCart())
+                this.mainFrame.changeView(ViewPanels.Checkout);
+            else {
+                System.out.println("shopping panel - checkout button - nothing in cart, no check out");
+                JDialog errorDialog = new JDialog(this.mainFrame, "no check out");
+                errorDialog.setSize(200, 100);
+
+                JLabel textLabel = new JLabel("nothing in cart, no check out");
+                errorDialog.add(textLabel);
+
+                errorDialog.setVisible(true);
+            }
         });
 
         JTextField searchField = new JTextField(40);

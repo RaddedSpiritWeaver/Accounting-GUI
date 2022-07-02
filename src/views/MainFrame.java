@@ -62,6 +62,9 @@ public class MainFrame extends JFrame {
 //            changePanel(new ItemPanel(this, this.program.getRandomProduct()));
             changePanel(new ShoppingPanel(this));
         }
+
+        if (newView.equals(ViewPanels.Checkout))
+            changePanel(new CheckoutPanel(this.program.getCurrentUser(), this));
     }
 
     // getters and setters

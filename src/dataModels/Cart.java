@@ -113,4 +113,18 @@ public class Cart {
         for (CountableProduct entry : this.items)
             System.out.println(String.format("%S : %d", entry.product.getName(), entry.count));
     }
+
+    public long subtotal() {
+        long result = 0;
+        for (CountableProduct p : this.items)
+            result = result + p.count * p.product.getPrice();
+        return result;
+    }
+
+    public LinkedList<Product> getProducts() {
+        LinkedList<Product> result = new LinkedList<>();
+        for (CountableProduct p : this.items)
+            result.add(p.product);
+        return result;
+    }
 }

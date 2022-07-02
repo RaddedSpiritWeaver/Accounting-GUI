@@ -46,8 +46,13 @@ public class User {
         this.debt = debt;
     }
 
+    public boolean hasEmptyCart() {
+        return this.cart.getProducts().isEmpty();
+    }
+
     @Override
     public String toString() {
+        this.cart.show();
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +

@@ -10,15 +10,24 @@ public class ItemPanel extends JPanel {
 
     private MainFrame mainFrame;
     private Product product;
+    private boolean checkOutMode = false;
 
     public ItemPanel(MainFrame mainFrame, Product product) {
         super();
         this.mainFrame = mainFrame;
         this.product = product;
-        init();
+        init(0);
     }
 
-    private void init() {
+    public ItemPanel(MainFrame mainFrame, Product product, int count) {
+        super();
+        this.mainFrame = mainFrame;
+        this.product = product;
+        this.checkOutMode = true;
+        init(count);
+    }
+
+    private void init(int count) {
         CartServices cartServices = this.mainFrame.getProgram().getCartService();
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -31,7 +40,7 @@ public class ItemPanel extends JPanel {
 
         JLabel nameLabel = new JLabel(this.product.getName());
 
-        JLabel priceLabel = new JLabel(String.format("Price : %d", this.product.getPrice()));
+        JLabel priceLabel = new JLabel(String.format("Unit Price : %d", this.product.getPrice()));
 
         topPanel.add(nameLabel);
         topPanel.add(priceLabel);
@@ -47,25 +56,38 @@ public class ItemPanel extends JPanel {
         midPanel.add(storeCountLabel);
         midPanel.add(cartCountLabel);
 
+        if(this.checkOutMode)
+            midPanel.remove(storeCountLabel);
+
         JPanel bottomPanel = new JPanel();
-        bottomPanel.setLayout(new GridLayout(1, 2));
 
-        JButton addButton = new JButton("Add");
-        addButton.addActionListener(e -> {
-            cartServices.addToCart(this.product);
-            storeCountLabel.setText(String.format("Storage: %d", cartServices.getInventoryCount(this.product)));
-            cartCountLabel.setText(String.format("Cart: %d", cartServices.getCartCount(this.product)));
-        });
+        if(!this.checkOutMode){
+            bottomPanel.setLayout(new GridLayout(1, 2));
 
-        JButton removeButton = new JButton("Remove");
-        removeButton.addActionListener(e -> {
-            cartServices.removeFromCart(this.product);
-            storeCountLabel.setText(String.format("Storage: %d", cartServices.getInventoryCount(this.product)));
-            cartCountLabel.setText(String.format("Cart: %d", cartServices.getCartCount(this.product)));
-        });
+            JButton addButton = new JButton("Add");
+            addButton.addActionListener(e -> {
+                cartServices.addToCart(this.product);
+                storeCountLabel.setText(String.format("Storage: %d", cartServices.getInventoryCount(this.product)));
+                cartCountLabel.setText(String.format("Cart: %d", cartServices.getCartCount(this.product)));
+            });
 
-        bottomPanel.add(addButton);
-        bottomPanel.add(removeButton);
+            JButton removeButton = new JButton("Remove");
+            removeButton.addActionListener(e -> {
+                cartServices.removeFromCart(this.product);
+                storeCountLabel.setText(String.format("Storage: %d", cartServices.getInventoryCount(this.product)));
+                cartCountLabel.setText(String.format("Cart: %d", cartServices.getCartCount(this.product)));
+            });
+
+            bottomPanel.add(addButton);
+            bottomPanel.add(removeButton);
+        }
+        else {
+            bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+
+            JLabel totalValue = new JLabel(String.format("Total value: %d", count * product.getPrice()));
+
+            bottomPanel.add(totalValue);
+        }
 
         this.add(topPanel);
         this.add(midPanel);
