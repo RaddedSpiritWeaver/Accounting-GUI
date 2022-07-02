@@ -37,7 +37,7 @@ public class ShoppingPanel extends JPanel {
 
         JButton viewProfileButton = new JButton("View Profile");
         viewProfileButton.addActionListener(e -> {
-            // todo: add action
+            this.mainFrame.changeView(ViewPanels.Profile);
         });
 
         JButton checkoutButton = new JButton("Checkout");

@@ -6,6 +6,7 @@ public enum ViewPanels {
     Login,
     Signup,
     Shopping,
-    Checkout
+    Checkout,
+    Profile
 
 }

@@ -97,8 +97,14 @@ public class CheckoutPanel extends JPanel {
             mainFrame.changeView(ViewPanels.Shopping);
         });
 
+        JButton backButton = new JButton("back");
+        backButton.addActionListener(e -> {
+            this.mainFrame.changeView(ViewPanels.Shopping);
+        });
+
         botPanel.add(payNowButton);
         botPanel.add(payLaterButton);
+        botPanel.add(backButton);
 
         this.add(topPanel);
         this.add(midPanel);

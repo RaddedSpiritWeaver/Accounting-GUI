@@ -65,6 +65,9 @@ public class MainFrame extends JFrame {
 
         if (newView.equals(ViewPanels.Checkout))
             changePanel(new CheckoutPanel(this.program.getCurrentUser(), this));
+
+        if (newView.equals(ViewPanels.Profile))
+            changePanel(new ProfilePanel(this, this.program.getCurrentUser()));
     }
 
     // getters and setters

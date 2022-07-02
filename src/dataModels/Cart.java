@@ -127,4 +127,8 @@ public class Cart {
             result.add(p.product);
         return result;
     }
+
+    public int getSize() {
+        return this.items.size();
+    }
 }
